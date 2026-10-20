@@ -12,7 +12,7 @@ editor: visual
 
 -   List the first **10 rows** of the `flights` table.
 
-    -   
+    -   This code loads the `DBI` and `duckdb` packages and connects R to the `flights.duckdb` database. It then uses `dbGetQuery()` to execute an SQL query that retrieves the first 10 rows from the `flights` table. Finally, `knitr::kable()` displays the results in a clear, formatted table in the Quarto document.
 
 ```{r}
 #| label: Part a
@@ -40,5 +40,53 @@ knitr::kable(
   caption = "First 10 rows of the flights table"
 )
 
+
+```
+
+## Part b
+
+-   Part b.1
+
+    -   This query uses `COUNT(*)` to count all rows in the `flights` table and returns the total number of flights.
+
+```{r}
+#| label: Part b.1
+
+# Count the total number of flights
+part1b_total <- dbGetQuery(
+  conn,
+  "SELECT COUNT(*) AS number_of_flights
+   FROM flights"
+)
+
+# Display the result
+knitr::kable(
+  part1b_total,
+  caption = "Total Number of Flights"
+)
+
+```
+
+-   Part b.2
+
+    -   This query groups flights by `carrier`, counts the flights in each group, and sorts the results from the highest flight count to the lowest.
+
+```{r}
+#| label: Part b.2
+
+# Count flights for each carrier
+part1b_carrier <- dbGetQuery(
+  conn,
+  "SELECT carrier, COUNT(*) AS number_of_flights
+   FROM flights
+   GROUP BY carrier
+   ORDER BY number_of_flights DESC"
+)
+
+# Display the results
+knitr::kable(
+  part1b_carrier,
+  caption = "Number of Flights by Carrier"
+)
 
 ```

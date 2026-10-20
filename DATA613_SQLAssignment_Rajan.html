@@ -2239,7 +2239,7 @@ vertical-align: -.125em;
 <ul>
 <li><p>List the first <strong>10 rows</strong> of the <code>flights</code> table.</p>
 <ul>
-<li></li>
+<li>This code loads the <code>DBI</code> and <code>duckdb</code> packages and connects R to the <code>flights.duckdb</code> database. It then uses <code>dbGetQuery()</code> to execute an SQL query that retrieves the first 10 rows from the <code>flights</code> table. Finally, <code>knitr::kable()</code> displays the results in a clear, formatted table in the Quarto document.</li>
 </ul></li>
 </ul>
 <div class="cell">
@@ -2522,6 +2522,143 @@ vertical-align: -.125em;
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: left;">2013-01-01 11:00:00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-b" class="level2">
+<h2 class="anchored" data-anchor-id="part-b">Part b</h2>
+<ul>
+<li><p>Part b.1</p>
+<ul>
+<li>This query uses <code>COUNT(*)</code> to count all rows in the <code>flights</code> table and returns the total number of flights.</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the total number of flights</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>part1b_total <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  conn,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;SELECT COUNT(*) AS number_of_flights</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">   FROM flights&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the result</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  part1b_total,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Total Number of Flights&quot;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Total Number of Flights</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">number_of_flights</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">336776</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li><p>Part b.2</p>
+<ul>
+<li>This query groups flights by <code>carrier</code>, counts the flights in each group, and sorts the results from the highest flight count to the lowest.</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count flights for each carrier</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>part1b_carrier <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  conn,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;SELECT carrier, COUNT(*) AS number_of_flights</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">   FROM flights</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">   GROUP BY carrier</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">   ORDER BY number_of_flights DESC&quot;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the results</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  part1b_carrier,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Number of Flights by Carrier&quot;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Number of Flights by Carrier</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">carrier</th>
+<th style="text-align: right;">number_of_flights</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">UA</td>
+<td style="text-align: right;">58665</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B6</td>
+<td style="text-align: right;">54635</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EV</td>
+<td style="text-align: right;">54173</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DL</td>
+<td style="text-align: right;">48110</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AA</td>
+<td style="text-align: right;">32729</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MQ</td>
+<td style="text-align: right;">26397</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">US</td>
+<td style="text-align: right;">20536</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9E</td>
+<td style="text-align: right;">18460</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">WN</td>
+<td style="text-align: right;">12275</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VX</td>
+<td style="text-align: right;">5162</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FL</td>
+<td style="text-align: right;">3260</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AS</td>
+<td style="text-align: right;">714</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F9</td>
+<td style="text-align: right;">685</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">YV</td>
+<td style="text-align: right;">601</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">HA</td>
+<td style="text-align: right;">342</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OO</td>
+<td style="text-align: right;">32</td>
 </tr>
 </tbody>
 </table>
