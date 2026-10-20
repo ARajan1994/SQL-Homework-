@@ -142,3 +142,30 @@ knitr::kable(
 
 
 ```
+
+## Part e
+
+-   Part e
+
+    -   This query calculates the average arrival delay for each airline carrier. It groups flights by carrier, sorts the results from the largest average delay to the smallest, and displays the results in a formatted table. The connection to the database is then closed using `dbDisconnect(conn)`.
+
+```{r}
+#| label: Part e
+
+part1e <- dbGetQuery(
+  conn,
+  "SELECT carrier, AVG(arr_delay) AS average_arrival_delay
+   FROM flights
+   GROUP BY carrier
+   ORDER BY average_arrival_delay DESC"
+)
+
+knitr::kable(
+  part1e,
+  digits = 2,
+  caption = "Average Arrival Delay by Carrier"
+)
+
+dbDisconnect(conn)
+
+```

@@ -2761,6 +2761,108 @@ vertical-align: -.125em;
 </div>
 </div>
 </section>
+<section id="part-e" class="level2">
+<h2 class="anchored" data-anchor-id="part-e">Part e</h2>
+<ul>
+<li><p>Part e</p>
+<ul>
+<li>This query calculates the average arrival delay for each airline carrier. It groups flights by carrier, sorts the results from the largest average delay to the smallest, and displays the results in a formatted table. The connection to the database is then closed using <code>dbDisconnect(conn)</code>.</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>part1e <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  conn,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;SELECT carrier, AVG(arr_delay) AS average_arrival_delay</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">   FROM flights</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">   GROUP BY carrier</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">   ORDER BY average_arrival_delay DESC&quot;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  part1e,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">2</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Average Arrival Delay by Carrier&quot;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Average Arrival Delay by Carrier</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">carrier</th>
+<th style="text-align: right;">average_arrival_delay</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">F9</td>
+<td style="text-align: right;">21.92</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FL</td>
+<td style="text-align: right;">20.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EV</td>
+<td style="text-align: right;">15.80</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">YV</td>
+<td style="text-align: right;">15.56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">OO</td>
+<td style="text-align: right;">11.93</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MQ</td>
+<td style="text-align: right;">10.77</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">WN</td>
+<td style="text-align: right;">9.65</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B6</td>
+<td style="text-align: right;">9.46</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9E</td>
+<td style="text-align: right;">7.38</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UA</td>
+<td style="text-align: right;">3.56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">US</td>
+<td style="text-align: right;">2.13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VX</td>
+<td style="text-align: right;">1.76</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DL</td>
+<td style="text-align: right;">1.64</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AA</td>
+<td style="text-align: right;">0.36</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">HA</td>
+<td style="text-align: right;">-6.92</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AS</td>
+<td style="text-align: right;">-9.93</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(conn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 
 </main>
 <!-- /main column -->
