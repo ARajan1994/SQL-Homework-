@@ -205,3 +205,16 @@ dbDisconnect(conn)
     -   This screenshot shows the query in SQL that counts the number of flights for each route, using both the origin and destination airports. It groups flights by `origin` and `dest`, sorts the routes from the most flights to the fewest, and displays only the top 10 routes.
 
 ![](Part2_d.png)
+
+## Part e
+
+-   Part e
+
+    -   Exported the results of part b from dbeaver.
+
+```{r}
+#| label: Part 2 e
+
+read.csv("flights_by_carrier.csv")
+
+```
