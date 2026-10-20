@@ -189,3 +189,11 @@ dbDisconnect(conn)
     -   This query counts the number of flights for each carrier and sorts the results from largest to smallest.
 
 ![](Part2_b.png)
+
+## Part c
+
+-   Part c
+
+    -   This screenshot shows query that calculates the average departure delay for each month. It groups flights by month and uses `AVG(dep_delay)` to calculate the average delay in minutes. The results are displayed in month order, from January to December.
+
+![](Part2_c.png)
