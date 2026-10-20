@@ -1,0 +1,44 @@
+---
+title: "SQL Assignment: DATA 613"
+author: "Ananya Rajan"
+format: html
+self-contained: true
+editor: visual
+---
+
+### Part I: Answer the following question by running SQL using R Studio.
+
+## Part a
+
+-   List the first **10 rows** of the `flights` table.
+
+    -   
+
+```{r}
+#| label: Part a
+
+# Load required packages
+library(DBI)
+library(duckdb)
+
+# Connect to the DuckDB database
+conn <- dbConnect(
+  duckdb(),
+  dbdir = "flights.duckdb",
+  read_only = TRUE
+)
+
+# List the first 10 rows of the flights table
+part1a <- dbGetQuery(
+  conn,
+  "SELECT * FROM flights LIMIT 10"
+)
+
+# Display the results
+knitr::kable(
+  part1a,
+  caption = "First 10 rows of the flights table"
+)
+
+
+```
