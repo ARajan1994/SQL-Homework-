@@ -169,3 +169,15 @@ knitr::kable(
 dbDisconnect(conn)
 
 ```
+
+### Part II: Answer the following question by running SQL using DBeaver with DuckDB.
+
+-   Part a
+
+    -   The following SQL query screenshot displays the first 10 rows of the `flights` table.
+
+        -   ![](Part2_a.png)
+
+        -   
+
+
