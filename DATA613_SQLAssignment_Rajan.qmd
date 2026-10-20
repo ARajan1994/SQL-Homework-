@@ -90,3 +90,28 @@ knitr::kable(
 )
 
 ```
+
+## Part C
+
+-   Part c
+
+    -   This code uses the SQL function `AVG()` to calculate the average departure delay for all flights in the `flights` table. The result is returned in minutes, rounded to two decimal places for display. Flights with missing departure-delay values are excluded from the calculation.
+
+```{r}
+#| label: Part c
+
+# Calculate the average departure delay
+part1c <- dbGetQuery(
+  conn,
+  "SELECT AVG(dep_delay) AS average_departure_delay
+   FROM flights"
+)
+
+# Display the result
+knitr::kable(
+  part1c,
+  digits = 2,
+  caption = "Average Departure Delay in Minutes"
+)
+
+```
