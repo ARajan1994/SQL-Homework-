@@ -197,3 +197,11 @@ dbDisconnect(conn)
     -   This screenshot shows query that calculates the average departure delay for each month. It groups flights by month and uses `AVG(dep_delay)` to calculate the average delay in minutes. The results are displayed in month order, from January to December.
 
 ![](Part2_c.png)
+
+## Part d
+
+-   Part d
+
+    -   This screenshot shows the query in SQL that counts the number of flights for each route, using both the origin and destination airports. It groups flights by `origin` and `dest`, sorts the routes from the most flights to the fewest, and displays only the top 10 routes.
+
+![](Part2_d.png)
