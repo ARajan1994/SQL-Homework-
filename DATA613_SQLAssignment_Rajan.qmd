@@ -2,7 +2,7 @@
 title: "SQL Assignment: DATA 613"
 author: "Ananya Rajan"
 format: html
-self-contained: true
+embed-resources: true
 editor: visual
 ---
 
@@ -178,9 +178,7 @@ dbDisconnect(conn)
 
     -   The following SQL query screenshot displays the first 10 rows of the `flights` table.
 
-        -   ![](Part2_a.png)
-
-        -   
+![](Part2_a.png)
 
 ## Part b
 
