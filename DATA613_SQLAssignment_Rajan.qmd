@@ -172,6 +172,8 @@ dbDisconnect(conn)
 
 ### Part II: Answer the following question by running SQL using DBeaver with DuckDB.
 
+## Part a
+
 -   Part a
 
     -   The following SQL query screenshot displays the first 10 rows of the `flights` table.
@@ -180,4 +182,10 @@ dbDisconnect(conn)
 
         -   
 
+## Part b
 
+-   Part b
+
+    -   This query counts the number of flights for each carrier and sorts the results from largest to smallest.
+
+![](Part2_b.png)
