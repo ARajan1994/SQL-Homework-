@@ -91,7 +91,7 @@ knitr::kable(
 
 ```
 
-## Part C
+## Part c
 
 -   Part c
 
@@ -113,5 +113,32 @@ knitr::kable(
   digits = 2,
   caption = "Average Departure Delay in Minutes"
 )
+
+```
+
+## Part d
+
+-   Part d
+
+    -   The SQL query finds the five destination airports (`dest`) with the most flights. The `COUNT(*)` function counts the number of flights going to each destination, and `GROUP BY dest` groups flights by destination airport so each airport has its own total. The `ORDER BY number_of_flights DESC` clause sorts the results from the largest number of flights to the smallest. Finally, `LIMIT 5` displays only the top five destinations. The results are shown in a formatted table with the destination and its number of flights.
+
+```{r}
+#| label: Part d 
+
+part1d <- dbGetQuery(
+  conn,
+  "SELECT dest, COUNT(*) AS number_of_flights
+   FROM flights
+   GROUP BY dest
+   ORDER BY number_of_flights DESC
+   LIMIT 5"
+)
+
+knitr::kable(
+  part1d,
+  caption = "Top 5 Destinations with the Most Flights"
+)
+
+
 
 ```

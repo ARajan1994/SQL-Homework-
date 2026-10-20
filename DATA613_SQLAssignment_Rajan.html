@@ -2666,7 +2666,7 @@ vertical-align: -.125em;
 </div>
 </section>
 <section id="part-c" class="level2">
-<h2 class="anchored" data-anchor-id="part-c">Part C</h2>
+<h2 class="anchored" data-anchor-id="part-c">Part c</h2>
 <ul>
 <li><p>Part c</p>
 <ul>
@@ -2698,6 +2698,63 @@ vertical-align: -.125em;
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">12.64</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-d" class="level2">
+<h2 class="anchored" data-anchor-id="part-d">Part d</h2>
+<ul>
+<li><p>Part d</p>
+<ul>
+<li>The SQL query finds the five destination airports (<code>dest</code>) with the most flights. The <code>COUNT(*)</code> function counts the number of flights going to each destination, and <code>GROUP BY dest</code> groups flights by destination airport so each airport has its own total. The <code>ORDER BY number_of_flights DESC</code> clause sorts the results from the largest number of flights to the smallest. Finally, <code>LIMIT 5</code> displays only the top five destinations. The results are shown in a formatted table with the destination and its number of flights.</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>part1d <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  conn,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;SELECT dest, COUNT(*) AS number_of_flights</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">   FROM flights</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">   GROUP BY dest</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">   ORDER BY number_of_flights DESC</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">   LIMIT 5&quot;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  part1d,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Top 5 Destinations with the Most Flights&quot;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Top 5 Destinations with the Most Flights</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">dest</th>
+<th style="text-align: right;">number_of_flights</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ORD</td>
+<td style="text-align: right;">17283</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ATL</td>
+<td style="text-align: right;">17215</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LAX</td>
+<td style="text-align: right;">16174</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BOS</td>
+<td style="text-align: right;">15508</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MCO</td>
+<td style="text-align: right;">14082</td>
 </tr>
 </tbody>
 </table>
